@@ -1,0 +1,19 @@
+#
+
+# home_away:
+#     name: Nadie en casa
+#     initial: off
+#     icon: mdi:walk
+
+summer_mode:
+    name: Modo verano
+    initial: on
+    icon: mdi:white-balance-sunny
+holiday:
+    name: Modo Vacaciones
+    initial: off
+    icon: mdi:home-map-marker
+notificacion_pruebas:
+    name: Pruebas de notificaciones
+    initial: off
+    icon: mdi:white-balance-sunny

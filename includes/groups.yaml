@@ -1,0 +1,103 @@
+default_view_2:
+  name: default
+  view: true
+  icon: mdi:home
+  entities: updater.updater, sun.sun,group.lights, group.temperature, device_tracker.iphonededaniel, device_tracker.iphonedeelvira,
+    sensor.time, sensor.yr_symbol, sensor.yr_temperature, sensor.yr_precipitation, group.modes, sun.sun
+lights:
+  name: Luces
+  entities: light.Salon
+modes:
+  name: Modos
+  entities:
+  - input_boolean.summer_mode
+  - input_boolean.holiday
+  - input_boolean.notificacion_pruebas
+temperature:
+  name: "Calefacción por plantas"
+  entities:
+  - group.temperature_planta0
+  - group.temperature_planta1
+  - group.temperature_planta2
+temperature_planta0:
+  name: Planta 0
+  view: false
+  entities: climate.cocina_heating_1, climate.entrada_heating_1, climate.aseo_heating_1,
+    climate.salon_mirador_heating_1, climate.salon_jardin_heating_1, climate.salon_sofas_heating_1
+temperature_planta1:
+  name: Planta 1
+  view: false
+  entities: climate.hall_heating_1, climate.despacho_heating_1, climate.bano_invitados_heating_1,
+    climate.bano_principal_heating_1, climate.hab_principal_heating_1, climate.hab_alicia_heating_1,
+    climate.hab_invitados_heating_1
+temperature_planta2:
+  name: Buhardilla
+  view: false
+  entities: climate.buhardilla_izqu_heating_1
+planta0:
+  name: Planta 0
+  view: false
+  entities: climate.cocina_heating_1, climate.entrada_heating_1, climate.aseo_heating_1,
+    climate.salon_mirador_heating_1, climate.salon_jardin_heating_1, climate.salon_sofas_heating_1
+planta1:
+  name: Planta 1
+  view: false
+  entities: climate.hall_heating_1, climate.despacho_heating_1, climate.bano_invitados_heating_1,
+    climate.bano_principal_heating_1, climate.hab_principal_heating_1, climate.hab_alicia_heating_1,
+    climate.hab_invitados_heating_1
+planta2:
+  name: Buhardilla
+  view: false
+  entities: climate.buhardilla_izqu_heating_1
+calefaccion:
+  name: Calefaccion
+  view: true
+  entities:
+  - group.planta0
+  - group.planta1
+  - group.planta2
+multimedia:
+  name: Multimedia
+  view: true
+  icon: mdi:library-music
+  entities:
+  - media_player.plex_web_safari
+  - media_player.cocina
+  - media_player.salon
+  - media_player.bano
+  - media_player.jardin
+  - media_player.spotify
+escenas:
+  name: Escenas
+  view: true
+  entities: scene.001_Elvira_se_levanta, scene.002_La_nena_y_papa_se_levantan, scene.003_La_nena_y_papa_se_van_al_cole,
+    scene.004_Ya_estamos_en_casa, scene.005_La_nena_se_bana, scene.006_La_nena_se_va_a_la_cama,
+    scene.007_Todos_a_la_cama, scene.008_Modo_verano_activado, automation.Summer_mode_on_off,
+    automation.Summer_activated, automation.Dani_se_va, automation.Elvira_se_va, automation.Dani_llega_a_casa,
+    automation.Elvira_llega_a_casa, automation.Elvira_se_levanta, automation.La_nena_y_papa_se_levantan,
+    automation.La_nena_y_papa_se_van_al_cole, automation.Ya_estamos_en_casa, automation.La_nena_se_bana,
+    automation.La_nena_se_va_a_la_cama, automation.Todos_a_la_cama, automation.FinDe_Levantarse,
+    automation.FinDe_Acostarse, automation.Vacaciones_Levantarse, automation.Vacaciones_Acostarse
+zwave:
+  view: true
+  name: zwave
+  entities:
+  - zwave.aeotec_dsa02203_zstick_s2_1
+  - zwave.aeotec_dsd37_range_extender_23
+  - zwave.cocina
+  - zwave.entrada
+  - zwave.aseo
+  - zwave.salon_mirador
+  - zwave.salon_jardin
+  - zwave.salon_sofas
+  - zwave.hall
+  - zwave.despacho
+  - zwave.bano_invitados
+  - zwave.hab_invitados
+  - zwave.hab_alicia
+  - zwave.hab_principal
+  - zwave.bano_principal
+  - zwave.buardilla_fondo
+  - zwave.buhardilla_izqu
+  - zwave._
+

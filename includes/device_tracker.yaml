@@ -1,0 +1,4 @@
+# - platform: icloud
+#   username: daniel.ramos@infokode.com
+#   password: !secret device_tracker_password
+# - platform: ios #doesnt' work, doesn't exist

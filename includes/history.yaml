@@ -1,0 +1,8 @@
+include:
+    entities:
+     - sensor.yr_temperature
+    domains:
+     - automation
+     - binary_sensor
+     - device_tracker
+     - media_player

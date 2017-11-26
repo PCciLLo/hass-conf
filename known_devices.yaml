@@ -1,0 +1,10 @@
+
+# discovery by ios app
+iphone7drg:
+  hide_if_away: false
+  icon:
+  mac:
+  name: iphone7drg
+  picture:
+  track: true
+  vendor:

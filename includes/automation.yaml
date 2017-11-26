@@ -1,0 +1,553 @@
+# - alias: Welcome
+#   # Bienvenida a casa (Dani)
+#   initial_state: true
+#   trigger:
+#     platform: state
+#     entity_id: device_tracker.iphonededaniel
+#     from: 'not_home'
+#     to: 'home'
+#   action:
+#     service: notify.iOSApp
+#     data:
+#       message: "¡Bienvenido Dani!"
+#       data:
+#         subtitle: "Welcome"
+#         push:
+#           badge: 5
+
+#########
+# Luces #
+#########
+- alias: Light_On_Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:15:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.Salon
+        brightness: 255
+        color_temp: 154
+- alias: Light_On_Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "00:15:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.Salon
+        brightness: 200
+        color_temp: 154
+- alias: Light_On_Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "00:15:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.Salon
+        brightness: 150
+        color_temp: 154
+- alias: Light_On_Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "00:15:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.Salon
+        brightness: 100
+        color_temp: 154
+- alias: Light_On_Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "00:15:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.Salon
+        brightness: 50
+        color_temp: 154
+- alias: Light_On_Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "00:15:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.Salon
+        brightness: 10
+        color_temp: 290
+# - alias: Probar_luz_on
+#   initial_state: true
+#   trigger:
+#     platform: state
+#     entity_id: input_boolean.notificacion_pruebas
+#     from: 'off'
+#     to: 'on'
+#   action:
+#     service: light.turn_on
+#     data:
+#       entity_id: light.Salon
+#       brightness: 10
+#       color_temp: 290
+# - alias: Probar_luz_off
+#   initial_state: true
+#   trigger:
+#     platform: state
+#     entity_id: input_boolean.notificacion_pruebas
+#     from: 'on'
+#     to: 'off'
+#   action:
+#     - service: light.turn_off
+#       data:
+#         entity_id: light.Salon
+########################################
+# Modos - cambios automáticos de modos #
+########################################
+- alias: Summer_mode_on_off
+  initial_state: false
+  trigger: 
+    platform: homeassistant
+    event: start
+  condition: 
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.current_month
+        state: 'June'
+      - condition: state
+        entity_id: sensor.current_month
+        state: 'July'
+      - condition: state
+        entity_id: sensor.current_month
+        state: 'August'
+      - condition: state
+        entity_id: sensor.current_month
+        state: 'September'
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.summer_mode
+###################################
+# Cambios según el cambio de modo #
+###################################
+- alias: Summer_activated
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_boolean.summer_mode
+    from: 'off'
+    to: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.008_Modo_verano_activado
+#############################################
+# Cambios de la calefacción según presencia #
+#############################################
+- alias: Dani_se_va
+  # Apagar calefacción si:
+  #  - Dani se va y no está Elvira en casa
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: device_tracker.iphonededaniel
+    from: 'home'
+    to: 'not_home'
+    # for:
+    #   hours: 0
+    #   minutes: 0
+    #   seconds: 30
+  condition:
+    - condition: state
+      entity_id: input_boolean.summer_mode
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.iphonedeelvira
+      state: 'not_home'
+  action:
+    service: scene.turn_on
+    entity_id: scene.007_Todos_a_la_cama
+- alias: Elvira_se_va
+  # Apagar calefacción si:
+  #  - Elvira se va y no está Dani en casa
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: device_tracker.iphonedeelvira
+    from: 'home'
+    to: 'not_home'
+    # for:
+    #   hours: 0
+    #   minutes: 0
+    #   seconds: 30
+  condition:
+    - condition: state
+      entity_id: input_boolean.summer_mode
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.iphonededaniel
+      state: 'not_home'
+  action:
+    service: scene.turn_on
+    entity_id: scene.007_Todos_a_la_cama
+- alias: Dani_llega_a_casa
+  # Encender calefacción cuando llega Dani a casa si:
+  #  - No es verano
+  #  - Elvira no está en casa
+  #  - Si son más de las 10 horas
+  #  - Si son antes de las 22 horas
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: device_tracker.iphonededaniel
+    from: 'not_home'
+    to: 'home'
+    # for:
+    #   hours: 0
+    #   minutes: 0
+    #   seconds: 30
+  condition:
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: state
+    entity_id: device_tracker.iphonedeelvira
+    state: 'not_home'
+  - condition: time
+    after: "10:00:00"
+  - condition: time
+    before: "22:00:00"
+  action:
+    service: scene.turn_on
+    entity_id: scene.004_Ya_estamos_en_casa
+- alias: Elvira_llega_a_casa
+  # Encender calefacción cuando llega Elvira a casa si:
+  #  - No es verano
+  #  - Dani no está en casa
+  #  - Si son más de las 10 horas
+  #  - Si son antes de las 22 horas
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: device_tracker.iphonedeelvira
+    from: 'not_home'
+    to: 'home'
+    # for:
+    #   hours: 0
+    #   minutes: 0
+    #   seconds: 30
+  condition:
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: state
+    entity_id: device_tracker.iphonededaniel
+    state: 'not_home'
+  - condition: time
+    after: "10:00:00"
+  - condition: time
+    before: "22:00:00"
+  action:
+    service: scene.turn_on
+    entity_id: scene.004_Ya_estamos_en_casa
+
+##########################################################################
+# Programación de la Calefacción - cambios programados de la calefacción #
+##########################################################################
+# Entre diario
+- alias: Elvira_se_levanta
+  initial_state: true
+  trigger:
+    platform: time
+    at: "06:00:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    service: scene.turn_on
+    entity_id: scene.001_Elvira_se_levanta
+- alias: La_nena_y_papa_se_levantan
+  initial_state: true
+  trigger:
+    platform: time
+    at: "07:00:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    service: scene.turn_on
+    entity_id: scene.002_La_nena_y_papa_se_levantan
+- alias: La_nena_y_papa_se_van_al_cole
+  initial_state: true
+  trigger:
+    platform: time
+    at: "08:00:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    service: scene.turn_on
+    entity_id: scene.003_La_nena_y_papa_se_van_al_cole
+- alias: Ya_estamos_en_casa
+  initial_state: true
+  trigger:
+    platform: time
+    at: "16:00:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    service: scene.turn_on
+    entity_id: scene.004_Ya_estamos_en_casa
+- alias: La_nena_se_bana
+  initial_state: true
+  trigger:
+    platform: time
+    at: "19:15:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    service: scene.turn_on
+    entity_id: scene.005_La_nena_se_bana
+- alias: La_nena_se_va_a_la_cama
+  initial_state: true
+  trigger:
+    platform: time
+    at: "21:00:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+  action:
+    service: scene.turn_on
+    entity_id: scene.006_La_nena_se_va_a_la_cama
+- alias: Todos_a_la_cama
+  initial_state: true
+  trigger:
+    platform: time
+    at: "23:30:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    service: scene.turn_on
+    entity_id: scene.007_Todos_a_la_cama
+# Fin de semana
+- alias: FinDe_Levantarse
+  initial_state: true
+  trigger:
+    platform: time
+    at: "09:30:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: time
+    weekday:
+      - sat
+      - sun
+  action:
+    service: scene.turn_on
+    entity_id: scene.004_Ya_estamos_en_casa
+- alias: FinDe_Acostarse
+  initial_state: true
+  trigger:
+    platform: time
+    at: "23:30:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: time
+    weekday:
+      - sat
+      - sun
+  action:
+    service: scene.turn_on
+    entity_id: scene.007_Todos_a_la_cama
+# Si modo vacaciones
+- alias: Vacaciones_Levantarse
+  initial_state: true
+  trigger:
+    platform: time
+    at: "09:30:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+  action:
+    service: scene.turn_on
+    entity_id: scene.004_Ya_estamos_en_casa
+- alias: Vacaciones_Acostarse
+  initial_state: true
+  trigger:
+    platform: time
+    at: "23:30:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.holiday
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+  action:
+    service: scene.turn_on
+    entity_id: scene.007_Todos_a_la_cama
+# #Notificacion de nueva version de HA
+# - alias: Notificacion de nueva versión de HA disponible
+#   trigger:
+#     - platform: state
+#       entity_id: updater.updater
+#   action:
+#     service: notify.ios_iphone_de_daniel
+#     data:
+#       message: 'Nueva versión de Home Assistant disponible.'
+- alias: Notify iOS app
+  trigger:
+    platform: state
+    entity_id: input_boolean.notificacion_pruebas
+    from: 'on'
+    to: 'off'
+  action:
+    service: notify.ios_iphone_de_daniel
+    data:
+      title: "Mi titulo"
+      message: "luces!"
+      data:
+        push:
+          badge: 1
+          category: "ALARM" # Needs to match the top level identifier you used in the ios configuration
+        action_data:
+          - service: light.turn_off
+            data:
+              entity_id: light.Salon
+- alias: Sound the alarm
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: SOUND_ALARM
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.Salon
+        brightness: 10
+        color_temp: 290

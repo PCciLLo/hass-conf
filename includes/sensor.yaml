@@ -1,0 +1,35 @@
+# Weather Prediction
+- platform: yr
+  monitored_conditions:
+    - temperature
+    - symbol
+    - precipitation
+    #- windSpeed
+    #- windDirection
+    #- humidity
+    #- fog
+    #- cloudiness
+#Clock
+- platform: time_date
+  display_options:
+    - 'time'
+- platform: template
+  sensors:
+    current_month:
+      value_template: "{{ now().strftime('%B') }}"
+      friendly_name: 'Current Month'
+      unit_of_measurement: 'month'
+# - platform: linux_battery
+# - platform: apcupsd
+#   resources:
+#     - bcharge
+#     - linev
+#     - loadpct
+#     - nominv
+#     - nompower
+#     - numxfers
+#     - outputv
+#     - status
+#     - timeleft
+#     - tonbatt
+

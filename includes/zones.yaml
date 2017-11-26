@@ -1,0 +1,23 @@
+- name: School
+  latitude: 40.630219
+  longitude: -3.522659
+  radius: 25
+  icon: mdi:school
+
+- name: Trabajo Elvira
+  latitude: 40.599380 
+  longitude: -3.698058
+  radius: 200
+  icon: mdi:domain
+  
+- name: Trabajo Dani
+  latitude: 40.533207 
+  longitude: -3.626063
+  radius: 100
+  icon: mdi:domain
+  
+- name: Home
+  latitude: 40.631397
+  longitude: -3.512849
+  radius: 25
+  icon: mdi:account-multiple

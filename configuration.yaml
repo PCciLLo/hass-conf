@@ -1,0 +1,73 @@
+##################################
+### Configuración básica de HA ###
+##################################
+homeassistant:
+  name: Casa
+  latitude: 40.631397
+  longitude: -3.512849
+  elevation: 639
+  unit_system: metric
+  time_zone: Europe/Madrid
+#
+# # Show links to resources in log and frontend
+# # introduction:
+# # Enables the frontend
+
+###################################################
+### Configuración HTTP, Front, updater... de HA ###
+###################################################
+frontend:
+http:
+  api_password: !secret http_password
+  base_url: <custom_subdomain>.<custom_domain>.me:8123
+  ip_ban_enabled: true # auto-banear ips
+# Enables configuration UI
+config:
+updater:
+discovery: # no deshabilitar, necesario para ios
+conversation:
+# Track the sun
+sun:
+hassio:
+######################
+### Includes de HA ###
+######################
+
+recorder: !include includes/recorder.yaml
+history: !include includes/history.yaml
+logbook: !include includes/logbook.yaml
+zwave: !include includes/zwave.yaml
+zone: !include includes/zones.yaml
+ios: !include includes/ios.yaml
+group: !include includes/groups.yaml
+scene: !include includes/scenes.yaml
+automation: !include includes/automation.yaml
+input_boolean: !include includes/input_boolean.yaml
+notify: !include includes/notify.yaml
+sensor: !include includes/sensor.yaml
+zeroconf:
+# apcupsd:
+#   host: 192.168.0.20
+#   port: 3551
+# device_tracker: !include includes/device_tracker.yaml
+
+
+# media_player:
+#    - platform: sonos
+#      hosts:
+#       - 192.168.0.12
+#       - 192.168.0.13
+#       - 192.168.0.14
+#   - platform: plex
+#   - platform: spotify
+#     client_id: !secret spotify_client_id
+#     client_secret: !secret spotify_client_secret
+
+light:
+  - platform: yeelight
+    devices:
+      192.168.0.101:
+        name: Salon
+        transition: 1000
+        use_music_mode: False  #(defaults to False)
+        save_on_change: True #(defaults to True)

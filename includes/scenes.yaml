@@ -1,0 +1,246 @@
+# En reglas generales:
+# - Temperatura Out:          18
+# - Temperatura in:           23
+# - Temperatura Habitaciones: 18 y 21
+# - Temperatura Buhardilla:   10
+
+- name: 001_Elvira_se_levanta
+  entities:
+    climate.cocina_heating_1:
+      temperature: 23
+    climate.entrada_heating_1:
+      temperature: 23
+    climate.aseo_heating_1:
+      temperature: 16
+    climate.salon_mirador_heating_1:
+      temperature: 16
+    climate.salon_jardin_heating_1:
+      temperature: 16
+    climate.salon_sofas_heating_1:
+      temperature: 16
+    climate.hall_heating_1:
+      temperature: 23
+    climate.despacho_heating_1:
+      temperature: 16
+    climate.bano_invitados_heating_1:
+      temperature: 16
+    climate.bano_principal_heating_1:
+      temperature: 23
+    climate.hab_principal_heating_1:
+      temperature: 16
+    climate.hab_alicia_heating_1:
+      temperature: 16
+    climate.hab_invitados_heating_1:
+      temperature: 16
+    climate.buhardilla_izqu_heating_1:
+      temperature: 9
+- name: 002_La_nena_y_papa_se_levantan
+  entities:
+    climate.cocina_heating_1:
+      temperature: 23
+    climate.entrada_heating_1:
+      temperature: 23
+    climate.aseo_heating_1:
+      temperature: 16
+    climate.salon_mirador_heating_1:
+      temperature: 16
+    climate.salon_jardin_heating_1:
+      temperature: 16
+    climate.salon_sofas_heating_1:
+      temperature: 16
+    climate.hall_heating_1:
+      temperature: 23
+    climate.despacho_heating_1:
+      temperature: 16
+    climate.bano_invitados_heating_1:
+      temperature: 16
+    climate.bano_principal_heating_1:
+      temperature: 23
+    climate.hab_principal_heating_1:
+      temperature: 23
+    climate.hab_alicia_heating_1:
+      temperature: 16
+    climate.hab_invitados_heating_1:
+      temperature: 16
+    climate.buhardilla_izqu_heating_1:
+      temperature: 10
+- name: 003_La_nena_y_papa_se_van_al_cole
+  entities:
+    climate.cocina_heating_1:
+      temperature: 16
+    climate.entrada_heating_1:
+      temperature: 16
+    climate.aseo_heating_1:
+      temperature: 16
+    climate.salon_mirador_heating_1:
+      temperature: 16
+    climate.salon_jardin_heating_1:
+      temperature: 16
+    climate.salon_sofas_heating_1:
+      temperature: 16
+    climate.hall_heating_1:
+      temperature: 16
+    climate.despacho_heating_1:
+      temperature: 16
+    climate.bano_invitados_heating_1:
+      temperature: 16
+    climate.bano_principal_heating_1:
+      temperature: 16
+    climate.hab_principal_heating_1:
+      temperature: 16
+    climate.hab_alicia_heating_1:
+      temperature: 16
+    climate.hab_invitados_heating_1:
+      temperature: 16
+    climate.buhardilla_izqu_heating_1:
+      temperature: 10
+- name: 004_Ya_estamos_en_casa
+  entities:
+    climate.cocina_heating_1:
+      temperature: 23
+    climate.entrada_heating_1:
+      temperature: 23
+    climate.aseo_heating_1:
+      temperature: 23
+    climate.salon_mirador_heating_1:
+      temperature: 23
+    climate.salon_jardin_heating_1:
+      temperature: 23
+    climate.salon_sofas_heating_1:
+      temperature: 23
+    climate.hall_heating_1:
+      temperature: 23
+    climate.despacho_heating_1:
+      temperature: 23
+    climate.bano_invitados_heating_1:
+      temperature: 23
+    climate.bano_principal_heating_1:
+      temperature: 23
+    climate.hab_principal_heating_1:
+      temperature: 23
+    climate.hab_alicia_heating_1:
+      temperature: 23
+    climate.hab_invitados_heating_1:
+      temperature: 23
+    climate.buhardilla_izqu_heating_1:
+      temperature: 10
+- name: 005_La_nena_se_bana
+  entities:
+    climate.cocina_heating_1:
+      temperature: 23
+    climate.entrada_heating_1:
+      temperature: 23
+    climate.aseo_heating_1:
+      temperature: 23
+    climate.salon_mirador_heating_1:
+      temperature: 23
+    climate.salon_jardin_heating_1:
+      temperature: 23
+    climate.salon_sofas_heating_1:
+      temperature: 23
+    climate.hall_heating_1:
+      temperature: 23
+    climate.despacho_heating_1:
+      temperature: 23
+    climate.bano_invitados_heating_1:
+      temperature: 23
+    climate.bano_principal_heating_1:
+      temperature: 23
+    climate.hab_principal_heating_1:
+      temperature: 23
+    climate.hab_alicia_heating_1:
+      temperature: 23
+    climate.hab_invitados_heating_1:
+      temperature: 23
+    climate.buhardilla_izqu_heating_1:
+      temperature: 10
+- name: 006_La_nena_se_va_a_la_cama
+  entities:
+    climate.cocina_heating_1:
+      temperature: 23
+    climate.entrada_heating_1:
+      temperature: 23
+    climate.aseo_heating_1:
+      temperature: 23
+    climate.salon_mirador_heating_1:
+      temperature: 23
+    climate.salon_jardin_heating_1:
+      temperature: 23
+    climate.salon_sofas_heating_1:
+      temperature: 23
+    climate.hall_heating_1:
+      temperature: 23
+    climate.despacho_heating_1:
+      temperature: 16
+    climate.bano_invitados_heating_1:
+      temperature: 16
+    climate.bano_principal_heating_1:
+      temperature: 23
+    climate.hab_principal_heating_1:
+      temperature: 16
+    climate.hab_alicia_heating_1:
+      temperature: 16
+    climate.hab_invitados_heating_1:
+      temperature: 16
+    climate.buhardilla_izqu_heating_1:
+      temperature: 10
+- name: 007_Todos_a_la_cama
+  entities:
+    climate.cocina_heating_1:
+      temperature: 16
+    climate.entrada_heating_1:
+      temperature: 16
+    climate.aseo_heating_1:
+      temperature: 16
+    climate.salon_mirador_heating_1:
+      temperature: 16
+    climate.salon_jardin_heating_1:
+      temperature: 16
+    climate.salon_sofas_heating_1:
+      temperature: 16
+    climate.hall_heating_1:
+      temperature: 16
+    climate.despacho_heating_1:
+      temperature: 16
+    climate.bano_invitados_heating_1:
+      temperature: 16
+    climate.bano_principal_heating_1:
+      temperature: 16
+    climate.hab_principal_heating_1:
+      temperature: 16
+    climate.hab_alicia_heating_1:
+      temperature: 16
+    climate.hab_invitados_heating_1:
+      temperature: 16
+    climate.buhardilla_izqu_heating_1:
+      temperature: 10
+- name: 008_Modo_verano_activado
+  entities:
+    climate.cocina_heating_1:
+      temperature: 8
+    climate.entrada_heating_1:
+      temperature: 8
+    climate.aseo_heating_1:
+      temperature: 8
+    climate.salon_mirador_heating_1:
+      temperature: 8
+    climate.salon_jardin_heating_1:
+      temperature: 8
+    climate.salon_sofas_heating_1:
+      temperature: 8
+    climate.hall_heating_1:
+      temperature: 8
+    climate.despacho_heating_1:
+      temperature: 8
+    climate.bano_invitados_heating_1:
+      temperature: 8
+    climate.bano_principal_heating_1:
+      temperature: 8
+    climate.hab_principal_heating_1:
+      temperature: 8
+    climate.hab_alicia_heating_1:
+      temperature: 8
+    climate.hab_invitados_heating_1:
+      temperature: 8
+    climate.buhardilla_izqu_heating_1:
+      temperature: 8

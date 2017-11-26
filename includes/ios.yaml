@@ -1,0 +1,11 @@
+push:
+  categories:
+    - name: ALARM
+      identifier: ALARM
+      actions:
+        - identifier: SOUND_ALARM
+          title: "Sound Alarm"
+          behavior: "default"
+        - identifier: NOT_SOUND_ALARM
+          title: "Not Sound Alarm"
+          behavior: default
